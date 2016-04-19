@@ -1,0 +1,1 @@
+# ecuador-eq-2016-severity
