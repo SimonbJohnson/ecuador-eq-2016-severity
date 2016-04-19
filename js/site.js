@@ -32,7 +32,7 @@ function generateDashboard(data,geom){
         .margins({top: 150, right: 20, bottom: 30, left: 200})
         .columns([severity,deaths,wounded,inshelter,destroyed,partially]);            
 
-    lg.colors(["#FFCDD2","#E57373","#F44336","#D32F2F","#B71C1C"]);
+    lg.colors(["#fef0d9","#fdcc8a","#fc8d59","#e34a33","#b30000"]);
 
     lg.init();
 
