@@ -29,7 +29,7 @@ function generateDashboard(data,geom){
         .joinAttr('#adm2+code')
         .hWhiteSpace(4)
         .vWhiteSpace(4)
-        .margins({top: 150, right: 20, bottom: 30, left: 200})
+        .margins({top: 200, right: 20, bottom: 30, left: 200})
         .columns([severity,deaths,wounded,inshelter,destroyed,partially]);            
 
     lg.colors(["#fef0d9","#fdcc8a","#fc8d59","#e34a33","#b30000"]);
@@ -37,6 +37,62 @@ function generateDashboard(data,geom){
     lg.init();
 
     $("#map").width($("#map").width());
+
+    var g = d3.select('#grid1').select('svg').select('g').append('g');
+
+    g.append('line').attr("x1", 0)
+                    .attr("y1", -170)
+                    .attr("x2", lg._gridRegister[0]._properties.boxWidth)
+                    .attr("y2", -170)
+                    .attr("stroke-width", 1)
+                    .attr("stroke", "black");
+
+    g.append('line').attr("x1", lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)
+                    .attr("y1", -170)
+                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*6)
+                    .attr("y2", -170)
+                    .attr("stroke-width", 1)
+                    .attr("stroke", "black");
+
+    g.append('line').attr("x1", 0)
+                    .attr("y1", -170)
+                    .attr("x2", 0)
+                    .attr("y2", -165)
+                    .attr("stroke-width", 1)
+                    .attr("stroke", "black");
+
+    g.append('line').attr("x1", lg._gridRegister[0]._properties.boxWidth)
+                    .attr("y1", -170)
+                    .attr("x2", lg._gridRegister[0]._properties.boxWidth)
+                    .attr("y2", -165)
+                    .attr("stroke-width", 1)
+                    .attr("stroke", "black");
+
+    g.append('line').attr("x1", lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)
+                    .attr("y1", -170)
+                    .attr("x2", lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)
+                    .attr("y2", -165)
+                    .attr("stroke-width", 1)
+                    .attr("stroke", "black");
+
+    g.append('line').attr("x1", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*6)
+                    .attr("y1", -170)
+                    .attr("x2", (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*6)
+                    .attr("y2", -165)
+                    .attr("stroke-width", 1)
+                    .attr("stroke", "black");
+
+    g.append('text').attr('x', lg._gridRegister[0]._properties.boxWidth/2)
+                    .attr('y', -175)
+                    .text('Predicted')
+                    .style("text-anchor", "middle")
+                    .attr("font-size",10);
+
+    g.append('text').attr('x', (lg._gridRegister[0]._properties.boxWidth+lg._gridRegister[0]._hWhiteSpace)*3.5)
+                    .attr('y', -175)
+                    .text('Government Reported')
+                    .style("text-anchor", "middle")
+                    .attr("font-size",10);                                                                                                                                   
 }
 
 function hxlProxyToJSON(input,headers){
